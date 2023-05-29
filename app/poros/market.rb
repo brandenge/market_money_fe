@@ -8,7 +8,7 @@ class Market
               :zip,
               :lat,
               :lon,
-              :vendor_count
+              :vendors
 
   def initialize(data)
     @id = data[:id]
@@ -20,6 +20,6 @@ class Market
     @zip = data[:attributes][:zip]
     @lat = data[:attributes][:lat]
     @lon = data[:attributes][:lon]
-    @vendor_count = data[:attributes][:vendor_count]
+    @vendors = data[:vendors] || []
   end
 end
