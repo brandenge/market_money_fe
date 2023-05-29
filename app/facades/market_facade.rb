@@ -5,6 +5,10 @@ class MarketFacade
     end
   end
 
+  def market(id)
+    Market.new(service.market(id))
+  end
+
   private
 
   def service

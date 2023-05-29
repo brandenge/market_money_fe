@@ -6,6 +6,14 @@ class MarketService
     get_url(url)[:data]
   end
 
+  def market(id)
+    market_url = "#{API_DOMAIN}/markets/#{id}"
+    market = get_url(market_url)[:data]
+    market_vendors_url = "#{API_DOMAIN}/markets/#{id}/vendors"
+    market[:vendors] = get_url(market_vendors_url)[:data]
+    market
+  end
+
   private
 
   def get_url(url)
