@@ -9,10 +9,10 @@
   </tr>
   <% @markets.each do |market| %>
     <tr class='market'>
-      <td class='name'>market.name</td>
-      <td class='city'>market.city</td>
-      <td class='state'>market.state</td>
-      <td class='more_info'><%= button_to 'More Info', market_path(market) %></td>
+      <td class='name'><%= market.name %></td>
+      <td class='city'><%= market.city %></td>
+      <td class='state'><%= market.state %></td>
+      <td class='more_info'><%= button_to 'More Info' %></td>
     </tr>
   <% end %>
 </table>
