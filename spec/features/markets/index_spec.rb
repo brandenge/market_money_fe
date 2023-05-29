@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Markets Index Page' do
+RSpec.feature 'Markets Index Page', :vcr do
   before do
     visit markets_path
   end
