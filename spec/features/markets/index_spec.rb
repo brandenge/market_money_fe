@@ -8,7 +8,7 @@ RSpec.feature 'Markets Index Page' do
   it 'has headers' do
     expect(page).to have_content('Markets')
 
-    within '#index' do
+    within '#markets' do
       within('#headers') do
         expect(page).to have_content('Name')
         expect(page).to have_content('City')
@@ -19,8 +19,8 @@ RSpec.feature 'Markets Index Page' do
   end
 
   it 'shows all the markets' do
-    within '#index' do
-      expect(page).to have_css('.market', count: 20)
+    within '#markets' do
+      expect(page).to have_css('.market', count: 846)
 
       within(first('.market')) do
         within('.name') do
