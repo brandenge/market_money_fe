@@ -12,7 +12,9 @@
       <td class='name'><%= market.name %></td>
       <td class='city'><%= market.city %></td>
       <td class='state'><%= market.state %></td>
-      <td class='more_info'><%= button_to 'More Info', market_path(market) %></td>
+      <td class='more_info'>
+        <%= button_to 'More Info', market_path(market.id), method: :get %>
+      </td>
     </tr>
   <% end %>
 </table>

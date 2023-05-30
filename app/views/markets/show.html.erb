@@ -3,8 +3,8 @@
 <h3><%= @market.city %>, <%= @market.state %> <%= @market.zip %></h3>
 
 <h3>Vendors at our Market:</h3>
-<div id='vendors'>
+<ul id='vendors'>
   <% @market.vendors.each do |vendor| %>
-    <%= link_to vendor.name, vendor_path(vendor), class: 'vendor' %>
+    <li><%= link_to vendor.name, vendor_path(vendor), class: 'vendor' %></li>
   <% end %>
-</div>
+</ul>
