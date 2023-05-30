@@ -22,6 +22,13 @@ class MoneyMarketService
     market
   end
 
+  def vendor(id)
+    vendor_url = "#{API_DOMAIN}/vendors/#{id}"
+    vendor_data = get_url(vendor_url)[:data]
+
+    vendor_hash(vendor_data)
+  end
+
   private
 
   def market_hash(market_data)
