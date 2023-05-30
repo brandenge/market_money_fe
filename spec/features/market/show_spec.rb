@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-RSpec.feature 'Market Show Page', :vcr do
+RSpec.feature 'Market Show Page', vcr: { record: :new_episodes } do
   before do
-    @market = create(:market)
-    visit market_path(@market)
+    market_id = 322482
+    @market = MarketFacade.new.market(market_id)
+    visit market_path(market_id)
   end
 
   it 'has headers' do
@@ -19,7 +20,7 @@ RSpec.feature 'Market Show Page', :vcr do
     within '#vendors' do
       expect(page).to have_css('.vendor', count: 5)
 
-      @markets.vendors.each do |vendor|
+      @market.vendors.each do |vendor|
         expect(page).to have_link(vendor.name)
       end
     end

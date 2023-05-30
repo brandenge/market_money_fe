@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Markets Index Page', :vcr do
+RSpec.feature 'Markets Index Page', vcr: { record: :new_episodes } do
   before do
     visit markets_path
   end
