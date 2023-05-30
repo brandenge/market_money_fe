@@ -20,4 +20,13 @@ RSpec.feature 'Vendor Show Page', vcr: { record: :new_episodes } do
     expect(page).to have_content(@vendor.contact_phone)
     expect(page).to have_content(@vendor.credit_accepted ? 'YES' : 'NO')
   end
+
+  it 'can search for markets to add the vendor to' do
+    expect(page).to have_content('Search for Markets to add this vendor:')
+
+    expect(page).to have_field('name', type: 'text')
+    expect(page).to have_field('city', type: 'text')
+    expect(page).to have_field('state', type: 'text')
+    expect(page).to have_button('Search')
+  end
 end

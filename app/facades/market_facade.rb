@@ -9,6 +9,10 @@ class MarketFacade
     Market.new(service.market(id))
   end
 
+  def search(name: nil, city: nil, state: nil)
+    
+  end
+
   private
 
   def service

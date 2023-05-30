@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   resources :markets, only: [:index, :show]
   resources :vendors, only: [:show]
+  get 'markets/search' => 'markets#search'
 end
