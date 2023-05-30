@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature 'Vendor Show Page', vcr: { record: :new_episodes } do
   before do
-    vendor_id = 55297
-    @vendor = VendorFacade.new.vendor(vendor_id)
-    visit vendor_path(vendor_id)
+    @vendor_id = 55297
+    @vendor = VendorFacade.new.vendor(@vendor_id)
+    visit vendor_path(@vendor_id)
   end
 
   it 'has headers' do
@@ -21,12 +21,21 @@ RSpec.feature 'Vendor Show Page', vcr: { record: :new_episodes } do
     expect(page).to have_content(@vendor.credit_accepted ? 'YES' : 'NO')
   end
 
-  it 'can search for markets to add the vendor to' do
+  it 'has a form to search for markets to add the vendor to' do
     expect(page).to have_content('Search for Markets to add this vendor:')
 
     expect(page).to have_field('name', type: 'text')
     expect(page).to have_field('city', type: 'text')
     expect(page).to have_field('state', type: 'text')
     expect(page).to have_button('Search')
+  end
+
+  it 'can search for markets to add the vendor to' do
+    fill_in 'city', with: 'Alexandria'
+    fill_in 'state', with: 'Virginia'
+
+    click_button('Search')
+
+    expect(current_path).to eq(vendor_path(@vendor_id))
   end
 end

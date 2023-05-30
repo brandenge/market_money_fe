@@ -13,5 +13,6 @@ class MarketsController < ApplicationController
       city: params[:city],
       state: params[:state]
     )
+    redirect_to vendor_path(params[:vendor_id])
   end
 end

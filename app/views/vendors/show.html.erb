@@ -7,9 +7,10 @@
 <p>Description: <%= @vendor.description %></p>
 
 <h3>Search for Markets to add this vendor:</h3>
-<%= form_with url: markets_search_path do |form| %>
-  <%= form.text_field :name, placeholder: 'name', id: 'name' %>
-  <%= form.text_field :city, placeholder: 'city', id: 'city' %>
-  <%= form.text_field :state, placeholder: 'state', id: 'state' %>
+<%= form_with url: markets_search_path, method: :get do |form| %>
+  <%= form.text_field :vendor_id, value: @vendor.id, hidden: true %>
+  <%= form.text_field :name, placeholder: 'name' %>
+  <%= form.text_field :city, placeholder: 'city' %>
+  <%= form.text_field :state, placeholder: 'state' %>
   <%= form.submit 'Search' %>
 <% end %>
