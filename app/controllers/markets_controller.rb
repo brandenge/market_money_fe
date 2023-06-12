@@ -8,11 +8,15 @@ class MarketsController < ApplicationController
   end
 
   def search
-    @markets = MarketFacade.new.search(
+    @search_results = MarketFacade.new.search(
       name: params[:name],
       city: params[:city],
       state: params[:state]
     )
-    redirect_to vendor_path(params[:vendor_id])
+    if @search_results[:errors]
+      flash.now[:error] = @search_results[:errors]
+    end
+    @vendor = VendorFacade.new.vendor(params[:vendor_id])
+    render 'vendors/show'
   end
 end
