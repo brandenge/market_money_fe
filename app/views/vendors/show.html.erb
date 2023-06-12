@@ -14,3 +14,17 @@
   <%= form.text_field :state, placeholder: 'state' %>
   <%= form.submit 'Search' %>
 <% end %>
+
+<% if @search_results %>
+  <div id='search_results'>
+    <p><%= successful_search_message(@search_results) %></p>
+    <% @search_results[:markets].map do |market| %>
+      <div class='search_result'>
+        <%= link_to market.name, market_path(market.id) %>
+        <%= button_to 'Add Market', vendor_path(@vendor.id)%>
+      <div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= render "shared/messages" %>
