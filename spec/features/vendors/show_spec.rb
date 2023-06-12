@@ -30,12 +30,19 @@ RSpec.feature 'Vendor Show Page', vcr: { record: :new_episodes } do
     expect(page).to have_button('Search')
   end
 
-  it 'can search for markets to add the vendor to' do
+  it 'can search for markets and add the vendor to a market' do
     fill_in 'city', with: 'Alexandria'
     fill_in 'state', with: 'Virginia'
 
     click_button('Search')
 
-    expect(current_path).to eq(vendor_path(@vendor_id))
+    expect(page).to have_content('2 Search Results for city=Alexandria and state=Virginia:')
+
+    within '#search_results' do
+      within(first('.search_result')) do
+        expect(page).to have_link("Del Ray Farmers' Market")
+        expect(page).to have_button('Add Market')
+      end
+    end
   end
 end
