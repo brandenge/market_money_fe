@@ -40,9 +40,13 @@ class MoneyMarketService
       headers: { 'Content-Type' => 'application/json' }
     )
     response = connection.get(markets_search_url)
-    markets_data = JSON.parse(response.body, symbolize_names: true)[:data]
-    markets_data.map do |market_data|
-      format_market(market_data)
+    parsed_response = JSON.parse(response.body, symbolize_names: true)
+    if parsed_response[:data]
+      parsed_response[:data].map do |market_data|
+        format_market(market_data)
+      end
+    elsif parsed_response[:errors]
+      parsed_response
     end
   end
 
